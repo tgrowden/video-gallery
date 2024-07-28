@@ -25,7 +25,7 @@ func (srv *server) ConfigureRouter() {
 		write.Error(errors.InternalError)(w, r)
 	}
 
-	// MOVIES
+	// videos
 	srv.GET("/list-videos", handlers.ListVideos)
 	srv.GET("/video/:id", handlers.GetVideoData)
 	srv.POST("/video", handlers.UploadVideo)

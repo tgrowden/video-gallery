@@ -1,6 +1,13 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import {
+  createRootRouteWithContext,
+  Link,
+  Outlet
+} from "@tanstack/react-router";
+import { QueryClient } from "@tanstack/react-query";
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   component: () => (
     <>
       <div className="p-2 flex gap-2">
