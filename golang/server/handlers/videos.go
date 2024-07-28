@@ -15,14 +15,17 @@ import (
 
 var FILE_UPLOAD_PATH = "video-uploads"
 
+// Gets the directory of the video file
 func getLocalVideoDir(id int64) string {
 	return strconv.FormatInt(id, 10)
 }
 
+// Gets the name of the local video file
 func getLocalVideoName(filename string) string {
 	return "video" + path.Ext(filename)
 }
 
+// The handler used for uploading a video via a POST request
 func UploadVideo(env env.Env, res http.ResponseWriter, req *http.Request) http.HandlerFunc {
 	// limit upload size to 10M
 	req.Body = http.MaxBytesReader(res, req.Body, 10*1024*1024)
@@ -78,6 +81,7 @@ func UploadVideo(env env.Env, res http.ResponseWriter, req *http.Request) http.H
 	return write.JSON(video)
 }
 
+// Deletes a video, including removing the directory containing the video from the filesystem
 func DeleteVideo(env env.Env, res http.ResponseWriter, req *http.Request) http.HandlerFunc {
 	id, err := getIDRouteParam(req)
 
@@ -107,13 +111,12 @@ func DeleteVideo(env env.Env, res http.ResponseWriter, req *http.Request) http.H
 	return write.JSON(video)
 }
 
-/**
- * Returns a list of videos
- */
+// Returns a list of videos
 func ListVideos(env env.Env, res http.ResponseWriter, req *http.Request) http.HandlerFunc {
 	return write.JSONorErr(env.DB().GetVideos(req.Context()))
 }
 
+// Get the fields on a specific video by ID
 func GetVideoData(env env.Env, res http.ResponseWriter, req *http.Request) http.HandlerFunc {
 	id, err := getIDRouteParam(req)
 
@@ -133,6 +136,7 @@ func GetVideoData(env env.Env, res http.ResponseWriter, req *http.Request) http.
 	return write.JSON(video)
 }
 
+// Serves the video file
 func ServeVideo(env env.Env, res http.ResponseWriter, req *http.Request) http.HandlerFunc {
 	id, err := getIDRouteParam(req)
 

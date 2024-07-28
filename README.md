@@ -25,3 +25,22 @@ cp .env.example .env
 docker-compose up
 ```
 1) Visit `http://localhost:8080`
+
+## Code Organization
+
+### Backend
+
+New migrations can be created by running
+```bash
+./postgres new my_migration_name
+```
+
+Queries can be added in the [sql/queries directory](golang/sql/queries). sqlc will generate code.
+
+Handlers are defined in [server/handlers](golang/server/handlers).
+
+Routes are added in [routes.go](golang/server/routes.go).
+
+### Frontend
+
+Tanstack Router handles the routing; new routes are added to the [routes directory](react/src/routes).
