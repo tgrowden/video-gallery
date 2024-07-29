@@ -101,7 +101,7 @@ export default function VideoForm({ onSuccess }: VideoFormProps) {
                   className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                   id={field.name}
                   type="file"
-                  accept="video/x-ms-wmv,video/mp4,video/quicktime"
+                  accept="video/x-ms-wmv,video/mp4,video/quicktime,video/webm"
                   name={field.name}
                   onBlur={field.handleBlur}
                   onChange={(e) => {
@@ -111,7 +111,7 @@ export default function VideoForm({ onSuccess }: VideoFormProps) {
                 />
 
                 <p className="mt-1 text-sm text-gray-500" id="video_help">
-                  MP4, MOV, WMV (Max 10MB).
+                  MP4, MOV, WEBM (Max 10MB).
                 </p>
 
                 <FieldInfo field={field} />
