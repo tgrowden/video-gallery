@@ -6,4 +6,5 @@ workerbin
 # sometimes you might build locally
 # and this will be the default binary name
 main
-video-uploads
+video-uploads/*
+!video-uploads/.gitkeep
